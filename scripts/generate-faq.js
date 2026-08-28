@@ -201,15 +201,17 @@ function generateAccordionItem(entry, displayNumber, section) {
     const answerId = `${anchorId}-answer`;
     const bodyContent = entry.bodyLines.join('\n');
     const bodyHtml = marked.parse(bodyContent);
+    const questionKey = `faq-content.${anchorId}-question`;
+    const answerKey = `faq-content.${anchorId}-answer`;
 
     return `
 <div class="faq-item" data-section="${section}" id="${anchorId}">
     <button class="faq-question" data-umami-event="FAQ Page Expand" data-umami-event-question="${escapeHtml(entry.title)}" aria-controls="${answerId}">
         <span class="faq-number">${displayNumber}</span>
-        <span class="faq-text">${escapeHtml(entry.title)}</span>
+        <span class="faq-text" data-i18n="${questionKey}">${escapeHtml(entry.title)}</span>
         <span class="material-symbols-rounded">expand_more</span>
     </button>
-    <div class="faq-answer" id="${answerId}">
+    <div class="faq-answer" id="${answerId}" data-i18n-html="${answerKey}">
         ${bodyHtml}
     </div>
 </div>`;

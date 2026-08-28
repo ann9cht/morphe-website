@@ -33,9 +33,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Generate i18n files
-        run: npm run i18n:extract
-
       - name: Configure Umami
         run: |
           if [ "${{ github.ref }}" = "refs/heads/main" ]; then
@@ -66,6 +63,9 @@ jobs:
           echo "Generating FAQ page..."
           npm run faq:generate
           echo "FAQ page generated"
+
+      - name: Generate i18n files
+        run: npm run i18n:extract
 
       - name: Fetch and Update Morphe Download Link
         run: |

@@ -32,6 +32,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Generate FAQ HTML
+        run: npm run faq:generate
+
       - name: Check translation completeness
         id: check_status
         run: |
